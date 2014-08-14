@@ -23,7 +23,7 @@ def gen_symlink_struct(filename, basepath, targetdir):
 def run():
   retdict={}
   installdir="%s/bin" % pillar['site-mongodb_install_dir']
-  for f in [f for f in os.listdir(installdir)]:
+  for f in os.listdir(installdir):
     retdict["%s_symlink" % f] = gen_symlink_struct(f, installdir, "/usr/bin")
 
   #print retdict  # <<<<--- this is cool because we can just dump this to stdout

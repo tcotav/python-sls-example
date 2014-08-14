@@ -44,6 +44,30 @@ It's python -- you can use helper functions.  You can also apply states iterativ
 
 Of course we have TWO cases where we need to do this -- in two separate states.  The easy road is to just copy it entirely off to the other case and change the pillar data used.  Duplicate code copypaste :(
 
+### The biggest thing to note
+
+The biggest thing to note is that you are going to return a data struct that parallels the YAML you would've used to do the same thing.
+
+Look at what we do in this file -- we generate python that looks like the following:
+
+    'bsondump_symlink': {
+      'file.symlink': [
+        {'target': '/opt/mongo/bin/bsondump'}, 
+        {'name': '/usr/bin/bsondump'}
+      ]
+    }
+
+compare that with the same YAML:
+
+    bsondump_symlink:
+      file.symlink:
+        - target: '/opt/mongo/bin/bsondump' 
+        - name: /usr/bin/bsondump
+
+I know which one I'd rather use.  If only I could somehome wedge that os.listdirs in there.  (I just took a minute right there to ask in `#salt` irc channel.  Crickets... so hopefully this isn't a silly example/use-case).
+
+
+
 ### Running it
 
 This is dependent on your environment.  I usually work on a local masterless salt-minion vagrant box.  To test it, I just `state.sls` the state

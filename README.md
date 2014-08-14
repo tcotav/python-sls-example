@@ -15,8 +15,6 @@ You just need this repo and a working salt install.  I'm a fan of [masterless sa
 
 ### init.sls using python
 
-We'll create a `init.sls` in our `/srv/salt/test` directory.
-
 First, there are [docs on using python for writing your templates](http://salt.readthedocs.org/en/latest/ref/renderers/all/salt.renderers.py.html). 
 
 If you take a look at `init.sls` in our test repo, you'll see some of the stuff related to using python for writing your sls.  The first line of the file has to be:
@@ -28,15 +26,17 @@ From there, the only requirement (that I'm aware of) is that you have a `run()` 
 
     def run():
 
-That's it.  Let's take a look at the rest of the file.
+That's it.  Let's take a look at the rest of our example file.
     
     import os
 
-Right there -- use any of the python libs on your machine.  Go crazy -- use all the libraries (no, don't...).  
+You can use any of the python libs on your machine.  Go crazy -- use all the libraries (no, don't...).  
 
     def gen_symlink_struct(filename, basepath, targetdir):
 
-It's python -- you can use helper functions.  You can also apply states iteratively using a for loop that iterates over a list of files it pulls up from the os:
+It's python -- you can use helper functions.  You can call out and pull stuff from a database.  You can sleep for 20 seconds as a very unfunny joke.  
+
+You can also apply states iteratively using a for loop that iterates over a list of files it pulls up from the os which we do with this bit of code:
 
     for f in [f for f in os.listdir(installdir)]:
       retdict["%s_symlink" % f] = gen_symlink_struct(f, installdir, "/usr/bin")
@@ -46,9 +46,9 @@ Of course we have TWO cases where we need to do this -- in two separate states. 
 
 ### The biggest thing to note
 
-The biggest thing to note is that you are going to return a data struct that parallels the YAML you would've used to do the same thing.
+The biggest thing to note is that you are going to return a data struct that parallels the `YAML` you would've used to do the same thing.
 
-Look at what we do in this file -- we generate python that looks like the following:
+Look at what we do in our `init.sls` file -- we generate python that looks like the following:
 
     'bsondump_symlink': {
       'file.symlink': [
@@ -65,7 +65,6 @@ compare that with the same YAML:
         - name: /usr/bin/bsondump
 
 I know which one I'd rather use.  If only I could somehome wedge that os.listdirs in there.  (I just took a minute right there to ask in `#salt` irc channel.  Crickets... so hopefully this isn't a silly example/use-case).
-
 
 
 ### Running it

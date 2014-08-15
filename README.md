@@ -10,7 +10,7 @@ So, what we need to do is symlink all of the binaries from `/opt/mongo`.  At the
 
 ### Requirements
 
-You just need this repo and a working salt install.  I'm a fan of [masterless salt minions](http://salt.readthedocs.org/en/latest/topics/tutorials/quickstart.html) for simple local dev work. 
+You just need [this repo](https://github.com/tcotav/python-sls-example) and a working salt install.  I'm a fan of [masterless salt minions](http://salt.readthedocs.org/en/latest/topics/tutorials/quickstart.html) for simple local dev work. 
 
 
 ### init.sls using python

@@ -95,7 +95,7 @@ or after renaming it and dropping it into the `mymongo` state directory's `init.
     include:
       - mymongo.symlink_mongo_bins
 
-but the real conclusion I reached is that I'll just avoid the whole shebang because the file list don't change all that often if ever:
+but the real conclusion I reached is that I'll just avoid the whole shebang because the file list doesn't change all that often if ever:
 
     # symlink binaries from /opt/mongo/bin -> /usr/bin
     {% for bin in ["bsondump","mongo","mongod","mongodump","mongoexport","mongofiles","mongoimport","mongooplog","mongoperf","mongorestore","mongos","mongosniff","mongostat","mongotop"] %}

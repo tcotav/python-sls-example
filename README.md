@@ -93,7 +93,7 @@ In the end, this isn't all that great of a solution for us as the creation of sy
 or after renaming it and dropping it into the `mymongo` state directory's `init.sls`:
 
     include:
-      - mymongo.symlink_mongo_bins.sls
+      - mymongo.symlink_mongo_bins
 
 but the real conclusion I reached is that I'll just avoid the whole shebang because the file list don't change all that often if ever:
 
